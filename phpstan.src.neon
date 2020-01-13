@@ -1,0 +1,8 @@
+includes:
+- vendor/phpstan/phpstan-strict-rules/rules.neon
+parameters:
+    checkGenericClassInNonGenericObjectType: false
+    checkMissingIterableValueType: false
+    ignoreErrors:
+        - '#Variable static method call on Bakame\\Color\\Color\.#'
+    reportUnmatchedIgnoredErrors: true

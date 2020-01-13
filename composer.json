@@ -1,0 +1,53 @@
+{
+    "require-dev": {
+        "infection/infection": "^0.13",
+        "phpspec/phpspec": "^6.1",
+        "phpstan/phpstan": "^0.12",
+        "phpstan/phpstan-phpunit": "^0.12",
+        "phpstan/phpstan-strict-rules": "^0.12",
+        "phpunit/phpunit": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Bakame\\Color\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "BakameTest\\Color\\": "tests"
+        }
+    },
+    "scripts": {
+        "phpcs": "php-cs-fixer fix -v --diff --dry-run --allow-risky=yes --ansi",
+        "phpstan-src": "phpstan analyse -l max -c phpstan.src.neon src --ansi",
+        "phpstan-tests": "phpstan analyse -l max -c phpstan.tests.neon tests --ansi",
+        "phpstan": [
+            "@phpstan-src",
+            "@phpstan-tests"
+        ],
+        "phpunit": "phpunit --coverage-text",
+        "infection-linux": "infection -j$(nproc) --coverage=build --ignore-msi-with-no-mutations --min-covered-msi=80 --ansi",
+        "infection-osx": "infection -j$(sysctl -n hw.ncpu) --coverage=build --ignore-msi-with-no-mutations --min-covered-msi=80 --ansi",
+        "test": [
+            "@phpcs",
+            "@phpstan",
+            "@phpunit"
+        ],
+        "test-linux": [
+            "@test",
+            "@infection-linux"
+        ],
+        "test-osx": [
+            "@test",
+            "@infection-osx"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "4.x-dev"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

@@ -1,0 +1,7 @@
+suites:
+  color_suite:
+    namespace: Bakame\Color
+    psr4_prefix: Bakame\Color
+formatter.name: pretty
+verbose: true
+stop_on_failure: true
